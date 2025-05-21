@@ -12,7 +12,7 @@ const temperCelsiusBlack = <MaterialCommunityIcons name="temperature-celsius" si
 const temperCelsiusBlackMedium = <MaterialCommunityIcons name="temperature-celsius" size={16} color="black" />
 const temperCelsiusGray = <MaterialCommunityIcons name="temperature-celsius" size={13} color="gray" />
 const temperCelsiusGrayMedium = <MaterialCommunityIcons name="temperature-celsius" size={16} color="gray" />
-
+const apiKey = 'bffd2370ad6ad9d6d5d7dc8088f85a8e';
 
 const { width } = Dimensions.get('window')
 const MENU_WIDTH = width * 0.85
@@ -38,7 +38,6 @@ const HomeScreen = () => {
         let isMounted = true;  // ✅ Đánh dấu component còn tồn tại
 
         const fetchWeather = async (city) => {
-            const apiKey = '50f7f70ce8f72a732bfa026164713205';
             const cityName = city;
             const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
 
@@ -58,7 +57,6 @@ const HomeScreen = () => {
         };
 
         const fetchCity = async (city) => {
-            const apiKey = '50f7f70ce8f72a732bfa026164713205';
             const cityName = city;
             const url = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=metric&appid=${apiKey}`;
             try {
