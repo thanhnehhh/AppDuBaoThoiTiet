@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "demo-app",
+    "name": "weather-app",
     "slug": "demo-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -9,13 +9,22 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Ứng dụng này cần quyền truy cập vị trí của bạn để hiển thị thời tiết hiện tại."
+      },
+      "bundleIdentifier": "com.noname1221.demoapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.noname1221.demoapp",
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION"
+      ]
     },
     "web": {
       "bundler": "metro",
@@ -32,10 +41,25 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Cho phép ứng dụng này truy cập vị trí của bạn để hiển thị thời tiết."
+        }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "31e1e886-b8af-40fe-8973-ccba511b78b2"
+      }
+    },
+    "owner": "noname1221"
   }
 }

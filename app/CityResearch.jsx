@@ -3,24 +3,24 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useWeather } from '../context/weather_context';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import cities from '../assets/data/cities.json';
+import citiesData from '../assets/data/cities.json'; // Đổi tên biến để tránh trùng lặp với `cities` từ context
 
 export default function CitySearch() {
     const [query, setQuery] = useState('');
     const { setCities } = useWeather();
     const router = useRouter();
 
-    const filtered = cities.filter(c =>
-        c.name.toLowerCase().includes(query.toLowerCase()), [query]
+    const filtered = citiesData.filter(c => // Sử dụng citiesData
+        c.name.toLowerCase().includes(query.toLowerCase())
     );
 
-const handleSelect = (city) => {
-    setCities(prev => {
-        if (prev.includes(city.name)) return prev; // prevent duplicate
-        return [city.name, ...prev];
-    });
-    router.replace('/');
-};
+    const handleSelect = (city) => {
+        setCities(prev => {
+            if (prev.includes(city.name)) return prev; // prevent duplicate
+            return [city.name, ...prev]; // Đặt thành phố mới được chọn lên đầu
+        });
+        router.replace('/'); // Quay về màn hình chính
+    };
 
     return (
         <View style={styles.container}>
@@ -36,7 +36,7 @@ const handleSelect = (city) => {
                     onChangeText={setQuery}
                 />
             </View>
-    
+
             <FlatList
                 data={filtered}
                 keyExtractor={(item) => item.id.toString()}
@@ -46,7 +46,7 @@ const handleSelect = (city) => {
                         <Text style={styles.country}>{item.country}</Text>
                     </TouchableOpacity>
                 )}
-                showsHorizontalScrollIndicator={false} // tắt thanh cuộn nếu muốn
+                showsHorizontalScrollIndicator={false}
             />
         </View>
     );
